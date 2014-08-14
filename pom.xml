@@ -4,4 +4,23 @@
   <artifactId>objectbase</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+	<repositories>
+		<repository>
+			<id>snapshots</id>
+			<name>jboss repository</name>
+			<url>http://snapshots.jboss.org/maven2</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>oschina</id>
+			<name>oschina repository</name>
+			<url>http://maven.oschina.net/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
