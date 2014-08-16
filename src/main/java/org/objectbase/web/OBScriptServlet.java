@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.objectbase.parser.OBParser;
+
 public class OBScriptServlet extends HttpServlet{
 
 	/**
@@ -19,9 +21,12 @@ public class OBScriptServlet extends HttpServlet{
 		String script = req.getParameter("script");
 		script = script == null ? "" : script.trim();
 		System.out.println("receive script: \n"+script);
-		Object result = "success";
+		OBParser parser = new OBParser(script);
+
 		try {
-			req.setAttribute("orign", script);
+			Object result = parser.parseAndExecute();
+			
+			req.setAttribute("origin", script);
 			req.setAttribute("result", result == null ? "" : result.toString());
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		} catch (Exception e) {
