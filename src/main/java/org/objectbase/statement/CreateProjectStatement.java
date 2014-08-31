@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.objectbase.OBException;
 import org.objectbase.OBPair;
+import org.springframework.roo.model.JavaPackage;
+import org.springframework.roo.project.MavenCommands;
+import org.springframework.roo.project.packaging.JarPackaging;
 
 public class CreateProjectStatement extends DDLStatement{
 
@@ -50,6 +53,11 @@ public class CreateProjectStatement extends DDLStatement{
 	public void execute() throws OBException {
 		System.out.println("creating maven project " + "projectId: " + projectId +
 				", groupId: "+groupId + ", artifactId: " + artifactId + ", version: "+version);
+		
+		MavenCommands mavenCmd = new MavenCommands();
+		JavaPackage topLevelPackage  = new JavaPackage(groupId);
+		
+		mavenCmd.createProject(topLevelPackage, projectId, null, null, new JarPackaging());
 	}
 
 }
